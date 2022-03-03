@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Street Analysis Database</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Street Analysis Database</h1>
+    {% if data|length < 1 %}
+    <h4 style="text-align: center">There are no database.</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Frame id</th>
+            <th>Object id</th>
+            <th>Class Type</th>
+            <th>Object Direction</th>
+            <th>Cam Position</th>
+            <th>Actions</th>
+        </tr>
+        {% for item in data %}
+            <tr>
+                <td>{{ item.Frame_id }}</td>
+                <td>{{ item.Obj_id }}</td>
+                <td>{{ item.Class_Type }}</td>
+                <td>{{ item.Obj_direction }}</td>
+                <td>{{ item.cam_position }}</td>
+                <td>
+                    <a href="/delete/{{item.Frame_id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{item.Frame_id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <div class="form">
+        <form action="/" method="POST">
+            <input type="text" name="Obj_id" id="Obj_id">
+            <label for="Obj_id">Obj_id</label>
+            <input type="text" name="Class_Type" id="Class_Type">
+            <label for="Class_Type">Class_Type</label>
+            <input type="text" name="Obj_direction" id="Obj_direction">
+            <label for="Obj_direction">Obj_direction</label>
+            <input type="text" name="cam_position" id="cam_position">
+            <label for="cam_position">cam_position</label>
+            <br><br>
+            <input type="submit" value="Add item">
+        </form>
+    </div>
+</div>
+{% endblock %}

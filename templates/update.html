@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Street Analysis Database</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Update Data</h1>
+
+    <div class="form">
+        <form action="/update/{{item.frame_id}}" method="POST">
+            <input type="text" name="Class_Type" id="Class_Type" value="{{item.Class_Type}}">
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
+{% endblock %}
